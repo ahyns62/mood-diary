@@ -4,6 +4,7 @@ import NewDiary from "./pages/NewDiary";
 import DiaryList from "./pages/DiaryList";
 import NotFound from "./pages/Notfound";
 import { getEmotionImage } from "./util/get-emotion-image";
+import Button from "./components/Button";
 
 function App() {
   const nav = useNavigate();
@@ -14,20 +15,28 @@ function App() {
 
   return (
     <>
-      <div>
-        <img src={getEmotionImage(1)} />
-        <img src={getEmotionImage(2)} />
-        <img src={getEmotionImage(3)} />
-        <img src={getEmotionImage(4)} />
-        <img src={getEmotionImage(5)} />
-      </div>
+      <Button
+        text={"123"}
+        onClick={() => {
+          console.log("버튼 클릭");
+        }}
+      />
 
-      <div>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/new-diary"}>NewDiary</Link>
-        <Link to={"/list"}>List</Link>
-      </div>
-      <button onClick={onClickButton}>새 일기 작성 페이지로 이동</button>
+      <Button
+        text={"123"}
+        type={"POSITIVE"}
+        onClick={() => {
+          console.log("버튼 클릭");
+        }}
+      />
+
+      <Button
+        text={"123"}
+        type={"NEGATIVE"}
+        onClick={() => {
+          console.log("버튼 클릭");
+        }}
+      />
 
       <Routes>
         <Route path="/" element={<Home />} />
