@@ -1,20 +1,27 @@
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import NewDiary from "./pages/NewDiary";
 import DiaryList from "./pages/DiaryList";
 import NotFound from "./pages/Notfound";
-import { getEmotionImage } from "./util/get-emotion-image";
-import Button from "./components/Button";
+// import { getEmotionImage } from "./util/get-emotion-image";
+import Button from "./components/common/Button/Button";
+import Header from "./components/layout/Header/Header";
 
 function App() {
-  const nav = useNavigate();
+  //   const nav = useNavigate();
 
-  const onClickButton = () => {
-    nav("/new-diary");
-  };
+  //   const onClickButton = () => {
+  //     nav("/new-diary");
+  //   };
 
   return (
     <>
+      <Header
+        title={"Header"}
+        leftChild={<Button text={"Left"} />}
+        rightChild={<Button text={"Right"} />}
+      />
+
       <Button
         text={"123"}
         onClick={() => {
