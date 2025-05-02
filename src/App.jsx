@@ -25,6 +25,10 @@ function reducer(state, action) {
   switch (action.type) {
     case "CREATE":
       return [action.data, ...state];
+    case "UPDATE":
+      return state.map((item) =>
+        String(item.id) === String(action.data.id) ? action.data : item
+      );
   }
 }
 
@@ -46,6 +50,17 @@ function App() {
   };
 
   // 기존 일기 수정
+  const onUpdate = (id, createdDate, emotionId, content) => {
+    dispatch({
+      type: "UPDATE",
+      data: {
+        id,
+        createdDate,
+        emotionId,
+        content,
+      },
+    });
+  };
 
   // 기존 일기 삭제
 
@@ -54,6 +69,13 @@ function App() {
       <button onClick={() => onCreate(new Date().getTime(), 1, "hello")}>
         일기 추가 테스트
       </button>
+
+      <button
+        onClick={() => onUpdate(1, new Date().getTime(), 3, "수정된 일기")}
+      >
+        일기 수정 테스트
+      </button>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new-diary" element={<NewDiary />} />
