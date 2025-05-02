@@ -1,10 +1,13 @@
 import { getEmotionImage } from "../../../util/get-emotion-image";
 import Button from "../Button/Button";
+import "./DiaryItem.css";
 
 const DiaryItem = () => {
+  const emotionId = 1;
+
   return (
     <div className="DiaryItem">
-      <div className="img_section">
+      <div className={`img_section img_section_${emotionId}`}>
         <img src={getEmotionImage(1)} />
       </div>
       <div className="info_section">
@@ -12,7 +15,7 @@ const DiaryItem = () => {
         <div className="content">일기 내용</div>
       </div>
       <div className="button_section">
-        <Button text={"수정하기"} />
+        <Button text={"수정"} />
       </div>
     </div>
   );
