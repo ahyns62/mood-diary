@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <Header
-        title={"2025-02"}
+        title={"2025 - 05"}
         leftChild={<Button text={"<"} />}
         rightChild={<Button text={">"} />}
       />
