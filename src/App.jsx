@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import { useReducer, useRef, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NewDiary from "./pages/NewDiary";
@@ -35,6 +35,9 @@ function reducer(state, action) {
       return state;
   }
 }
+
+const DiaryStateContext = createContext();
+const DiaryDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
@@ -88,13 +91,17 @@ function App() {
 
       <button onClick={() => onDelete(1)}>일기 삭제 테스트</button>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/new-diary" element={<NewDiary />} />
-        <Route path="/list/:id" element={<DiaryList />} />
-        <Route path="/edit/:id" element={<EditDiary />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <DiaryStateContext.Provider value={data}>
+        <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/new-diary" element={<NewDiary />} />
+            <Route path="/list/:id" element={<DiaryList />} />
+            <Route path="/edit/:id" element={<EditDiary />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </DiaryDispatchContext.Provider>
+      </DiaryStateContext.Provider>
     </>
   );
 }
