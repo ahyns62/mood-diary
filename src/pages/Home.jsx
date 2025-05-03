@@ -1,14 +1,25 @@
+import { useState } from "react";
 import Header from "../components/layout/Header/Header";
 import Button from "../components/common/Button/Button";
 import DiaryList from "../components/layout/DiaryList/DiaryList";
 
 const Home = () => {
+  const [pivotDate, setPivotDate] = useState(new Date());
+
+  const onIncreaseMonth = () => {
+    setPivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() + 1));
+  };
+
+  const onDecreaseMonth = () => {
+    setPivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() - 1));
+  };
+
   return (
     <div>
       <Header
-        title={"2025 - 05"}
-        leftChild={<Button text={"<"} />}
-        rightChild={<Button text={">"} />}
+        title={`${pivotDate.getFullYear()}년 ${pivotDate.getMonth() + 1}월`}
+        leftChild={<Button onClick={onDecreaseMonth} text={"<"} />}
+        rightChild={<Button onClick={onIncreaseMonth} text={">"} />}
       />
 
       <DiaryList />
