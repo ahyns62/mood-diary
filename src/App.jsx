@@ -9,15 +9,21 @@ import NotFound from "./pages/Notfound";
 const mockData = [
   {
     id: 1,
-    createDate: new Date().getTime(),
+    createdDate: new Date("2025-05-04").getTime(),
     emotionId: 1,
     content: "1번 일기",
   },
   {
     id: 2,
-    createDate: new Date().getTime(),
+    createdDate: new Date("2025-05-03").getTime(),
     emotionId: 2,
     content: "2번 일기",
+  },
+  {
+    id: 3,
+    createdDate: new Date("2025-03-03").getTime(),
+    emotionId: 3,
+    content: "3번 일기",
   },
 ];
 
@@ -36,8 +42,10 @@ function reducer(state, action) {
   }
 }
 
-const DiaryStateContext = createContext();
-const DiaryDispatchContext = createContext();
+// eslint-disable-next-line react-refresh/only-export-components
+export const DiaryStateContext = createContext();
+// eslint-disable-next-line react-refresh/only-export-components
+export const DiaryDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
