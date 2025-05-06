@@ -1,6 +1,7 @@
 import "./Editor.css";
 import EmotionItem from "../../common/EmotionItem/EmotionItem";
 import Button from "../../common/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const emotionList = [
   { emotionId: 1, emotionName: "매우 좋음" },
@@ -12,11 +13,12 @@ const emotionList = [
 
 const Editor = () => {
   const emotionId = 2;
+  const nav = useNavigate();
 
   return (
     <div className="Editor">
       <section className="date_section">
-        <h3>오늘의 날짜</h3>
+        <h3>날짜</h3>
         <input type="date" />
       </section>
       <section className="emotion_section">
@@ -32,12 +34,12 @@ const Editor = () => {
         </div>
       </section>
       <section className="content_section">
-        <h3>오늘의 일기</h3>
+        <h3>내용</h3>
         <textarea placeholder="오늘 어떤 하루를 보내셨나요?" />
       </section>
       <section className="button_section">
-        <Button text={"취소"} />
-        <Button text={"작성 완료"} type={"POSITIVE"} />
+        <Button onClick={() => nav("/")} text={"취소"} />
+        <Button text={"저장"} type={"POSITIVE"} />
       </section>
     </div>
   );
