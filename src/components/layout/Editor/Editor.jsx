@@ -28,7 +28,6 @@ const getStringedDate = (targetDate) => {
 };
 
 const Editor = () => {
-  const emotionId = 2;
   const nav = useNavigate();
   const [input, setInput] = useState({
     createdDate: new Date(),
@@ -64,9 +63,17 @@ const Editor = () => {
         <div className="emotion_list_wrapper">
           {emotionList.map((item) => (
             <EmotionItem
+              onClick={() =>
+                onChangeInput({
+                  target: {
+                    name: "emotionId",
+                    value: item.emotionId,
+                  },
+                })
+              }
               key={item.emotionId}
               {...item}
-              isSelected={item.emotionId === emotionId}
+              isSelected={item.emotionId === input.emotionId}
             />
           ))}
         </div>
