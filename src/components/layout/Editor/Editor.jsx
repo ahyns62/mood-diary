@@ -2,6 +2,7 @@ import "./Editor.css";
 import EmotionItem from "../../common/EmotionItem/EmotionItem";
 import Button from "../../common/Button/Button";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const emotionList = [
   { emotionId: 1, emotionName: "매우 좋음" },
@@ -11,15 +12,52 @@ const emotionList = [
   { emotionId: 5, emotionName: "매우 나쁨" },
 ];
 
+const getStringedDate = (targetDate) => {
+  let year = targetDate.getFullYear();
+  let month = targetDate.getMonth() + 1;
+  let date = targetDate.getDate();
+
+  if (month < 10) {
+    month = `0${month}`;
+  }
+  if (date < 10) {
+    date = `0${date}`;
+  }
+
+  return `${year}-${month}-${date}`;
+};
+
 const Editor = () => {
   const emotionId = 2;
   const nav = useNavigate();
+  const [input, setInput] = useState({
+    createdDate: new Date(),
+    emotionId: 3,
+    content: "",
+  });
+
+  const onChangeInput = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    if (name === "createdDate") {
+      value = new Date(value);
+    }
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
 
   return (
     <div className="Editor">
       <section className="date_section">
         <h3>날짜</h3>
-        <input type="date" />
+        <input
+          onChange={onChangeInput}
+          value={getStringedDate.createdDate}
+          type="date"
+        />
       </section>
       <section className="emotion_section">
         <h3>오늘의 감정</h3>
