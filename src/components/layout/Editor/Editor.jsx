@@ -27,7 +27,7 @@ const getStringedDate = (targetDate) => {
   return `${year}-${month}-${date}`;
 };
 
-const Editor = () => {
+const Editor = ({ onSubmit }) => {
   const nav = useNavigate();
   const [input, setInput] = useState({
     createdDate: new Date(),
@@ -46,6 +46,10 @@ const Editor = () => {
       ...input,
       [name]: value,
     });
+  };
+
+  const onClickSubmitButton = () => {
+    onSubmit(input);
   };
 
   return (
@@ -89,7 +93,7 @@ const Editor = () => {
       </section>
       <section className="button_section">
         <Button onClick={() => nav("/")} text={"취소"} />
-        <Button text={"저장"} type={"POSITIVE"} />
+        <Button onClick={onClickSubmitButton} text={"저장"} type={"POSITIVE"} />
       </section>
     </div>
   );
