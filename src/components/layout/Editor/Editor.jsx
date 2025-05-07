@@ -80,7 +80,12 @@ const Editor = () => {
       </section>
       <section className="content_section">
         <h3>내용</h3>
-        <textarea placeholder="오늘 어떤 하루를 보내셨나요?" />
+        <textarea
+          name="content"
+          value={input.content}
+          onChange={onChangeInput}
+          laceholder="오늘 어떤 하루를 보내셨나요?"
+        />
       </section>
       <section className="button_section">
         <Button onClick={() => nav("/")} text={"취소"} />
