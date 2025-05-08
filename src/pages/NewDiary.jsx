@@ -2,11 +2,15 @@ import Header from "../components/layout/Header/Header";
 import Editor from "../components/layout/Editor/Editor";
 import { useContext } from "react";
 import { DiaryDispatchContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const NewDiary = () => {
   const { onCreate } = useContext(DiaryDispatchContext);
+  const nav = useNavigate();
+
   const onSubmit = (input) => {
     onCreate(input.createdDate.getTime(), input.emotionId, input.content);
+    nav("/", { replace: true });
   };
 
   return (
