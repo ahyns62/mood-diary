@@ -9,7 +9,7 @@ import { DiaryDispatchContext, DiaryStateContext } from "../App";
 const EditDiary = () => {
   const params = useParams();
   const nav = useNavigate();
-  const { onDelete } = useContext(DiaryDispatchContext);
+  const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
   const data = useContext(DiaryStateContext);
   const [currDiaryItem, setCurrDiaryItem] = useState();
 
@@ -24,13 +24,24 @@ const EditDiary = () => {
     }
 
     setCurrDiaryItem(currentDiaryItem);
-  }, [params.id, data]);
+  }, [params.id]);
 
   const onClickDelete = () => {
     if (window.confirm("일기를 정말 삭제할까요? 다시 복구되지 않아요!")) {
       onDelete(params.id);
       nav("/", { replace: true });
     }
+  };
+
+  const onSubmit = (input) => {
+    if (window.confirm("일기를 수정할까요?"))
+      onUpdate(
+        params.id,
+        input.createdDate.getTime(),
+        input.emotionId,
+        input.content
+      );
+    nav("/", { replace: true });
   };
 
   return (
@@ -41,7 +52,7 @@ const EditDiary = () => {
           <Button onClick={onClickDelete} text={"삭제"} type={"NEGATIVE"} />
         }
       />
-      <Editor initData={currDiaryItem} />
+      <Editor initData={currDiaryItem} onSubmit={onSubmit} />
     </div>
   );
 };
