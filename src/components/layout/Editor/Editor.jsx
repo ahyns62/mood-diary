@@ -92,7 +92,7 @@ const Editor = ({ onSubmit }) => {
         />
       </section>
       <section className="button_section">
-        <Button onClick={() => nav("/")} text={"취소"} />
+        <Button onClick={() => nav(-1)} text={"취소"} />
         <Button onClick={onClickSubmitButton} text={"저장"} type={"POSITIVE"} />
       </section>
     </div>
