@@ -3,14 +3,7 @@ import EmotionItem from "../../common/EmotionItem/EmotionItem";
 import Button from "../../common/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
-const emotionList = [
-  { emotionId: 1, emotionName: "매우 좋음" },
-  { emotionId: 2, emotionName: "좋음" },
-  { emotionId: 3, emotionName: "보통" },
-  { emotionId: 4, emotionName: "나쁨" },
-  { emotionId: 5, emotionName: "매우 나쁨" },
-];
+import { emotionList } from "../../../util/constants";
 
 const getStringedDate = (targetDate) => {
   let year = targetDate.getFullYear();
