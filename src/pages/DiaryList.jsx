@@ -10,7 +10,7 @@ const DiaryList = () => {
   const nav = useNavigate();
   const currDiaryItem = useDiary(params.id);
   if (!currDiaryItem) {
-    return <div>데이터 로딩중</div>;
+    return <div>데이터 로딩 중..</div>;
   }
   const { createdDate, emotionId, content } = currDiaryItem;
   const title = getStringedDate(new Date(createdDate));
@@ -19,9 +19,9 @@ const DiaryList = () => {
     <div>
       <Header
         title={`${title} 기록`}
-        leftChild={<Button onClick={() => nav(-1)} text={"< 뒤로가기"} />}
+        leftChild={<Button onClick={() => nav(-1)} text={"<"} />}
         rightChild={
-          <Button onClick={() => nav(`/edit/${params.id}`)} text={"수정하기"} />
+          <Button onClick={() => nav(`/edit/${params.id}`)} text={"수정"} />
         }
       />
       <Viewer emotionId={emotionId} content={content} />
