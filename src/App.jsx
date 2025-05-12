@@ -1,4 +1,4 @@
-import { useReducer, useRef, createContext, useEffect } from "react";
+import { useReducer, useRef, createContext, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NewDiary from "./pages/NewDiary";
@@ -37,17 +37,20 @@ export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [data, dispatch] = useReducer(reducer, []);
-  const idRef = useRef();
+  const idRef = useRef(0);
 
   useEffect(() => {
     const storedData = localStorage.getItem("diary");
 
     if (!storedData) {
+      setIsLoading(false);
       return;
     }
     const parsedData = JSON.parse(storedData);
     if (!Array.isArray(parsedData)) {
+      setIsLoading(false);
       return;
     }
 
@@ -64,6 +67,8 @@ function App() {
       type: "INIT",
       data: parsedData,
     });
+
+    setIsLoading(false);
   }, []);
 
   const onCreate = (createdDate, emotionId, content) => {
@@ -96,6 +101,10 @@ function App() {
       id,
     });
   };
+
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
 
   return (
     <>
