@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import NewDiary from "./pages/NewDiary";
 import DiaryList from "./pages/DiaryList";
 import EditDiary from "./pages/EditDiary";
-import NotFound from "./pages/Notfound";
+import NotFound from "./pages/NotFound";
 
 function reducer(state, action) {
   let nextState;
